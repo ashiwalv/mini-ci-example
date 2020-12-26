@@ -16,10 +16,10 @@ script:
 
 - echo "$REGISTRY_PASSWORD" | docker login --username $REGISTRY_USER --password-stdin
 
-- docker build -f Dockerfile -t YOUR-DOCKERHUB-ACCOUNT/demo:latest ./
+- docker build -f Dockerfile -t ashiwalv/demo:latest ./
 
 - GIT_SHA="$(git rev-parse --short HEAD)"
-- docker tag YOUR-DOCKERHUB-ACCOUNT/demo:latest YOUR-DOCKERHUB-ACCOUNT/demo:$GIT_SHA
+- docker tag ashiwalv/demo:latest ashiwalv/demo:$GIT_SHA
 
-- docker push YOUR-DOCKERHUB-ACCOUNT/demo:latest
-- docker push YOUR-DOCKERHUB-ACCOUNT/demo:$GIT_SHA
+- docker push ashiwalv/demo:latest
+- docker push ashiwalv/demo:$GIT_SHA
