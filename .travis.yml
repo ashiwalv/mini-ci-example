@@ -5,8 +5,21 @@ language: go
 go:
 - 1.13.x
 
+services:
+- docker
+
 script:   
 # Test the code
 - go test -v ./...
 # Build the code 
 - CGO_ENABLED=0 GOARCH=amd64 go build -o demo
+
+- echo "$REGISTRY_PASSWORD" | docker login --username $REGISTRY_USER --password-stdin
+
+- docker build -f Dockerfile -t YOUR-DOCKERHUB-ACCOUNT/demo:latest ./
+
+- GIT_SHA="$(git rev-parse --short HEAD)"
+- docker tag YOUR-DOCKERHUB-ACCOUNT/demo:latest YOUR-DOCKERHUB-ACCOUNT/demo:$GIT_SHA
+
+- docker push YOUR-DOCKERHUB-ACCOUNT/demo:latest
+- docker push YOUR-DOCKERHUB-ACCOUNT/demo:$GIT_SHA
