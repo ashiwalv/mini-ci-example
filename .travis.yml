@@ -21,5 +21,7 @@ script:
 - GIT_SHA="$(git rev-parse --short HEAD)"
 - docker tag ashiwalv/demo:latest ashiwalv/demo:$GIT_SHA
 
+- docker login --username $REGISTRY_USER --password-stdin
+
 - docker push ashiwalv/demo:latest
 - docker push ashiwalv/demo:$GIT_SHA
