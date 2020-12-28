@@ -2,7 +2,7 @@
 FROM alpine:3.10.3
 
 # Copy binary demo to the folder `/bin/`
-COPY demo1 /bin/demo1
+COPY demo1 /bin/demo2
 
 # Run the service demo when a container is launched
-CMD ["/bin/demo1"]
+CMD ["/bin/demo2"]
