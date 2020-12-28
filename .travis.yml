@@ -10,7 +10,7 @@ services:
 
 script:
 - go test -v ./...
-- CGO_ENABLED=0 go build -o demo
+- CGO_ENABLED=0 GOARCH=amd64 go build -o demo
 
 - echo "$REGISTRY_PASSWORD" | docker login --username $REGISTRY_USER --password-stdin
 
@@ -19,4 +19,5 @@ script:
 - GIT_SHA="$(git rev-parse --short HEAD)"
 - docker tag ashiwalv/demo:latest ashiwalv/demo:$GIT_SHA
 
-- docker push ashiwalv/demo:$GIT_SHA
+- docker push YOUR-DOCKERHUB-ACCOUNT/demo:latest
+- docker push YOUR-DOCKERHUB-ACCOUNT/demo:$GIT_SHA
